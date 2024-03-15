@@ -24,9 +24,9 @@ root.render(
   <React.StrictMode>
     <AuthCoreContextProvider
       options={{
-        projectId: process.env.NEXT_PUBLIC_PARTICLE_PROJECT_ID!,
-        clientKey: process.env.NEXT_PUBLIC_PARTICLE_CLIENT_KEY!,
-        appId: process.env.NEXT_PUBLIC_PARTICLE_APP_ID!,
+        projectId: process.env.REACT_APP_PARTICLE_PROJECT_ID!,
+        clientKey: process.env.REACT_APP_PARTICLE_CLIENT_KEY!,
+        appId: process.env.REACT_APP_PARTICLE_APP_ID!,
         authTypes: [AuthType.phone],
         themeType: "dark",
         fiatCoin: "USD",

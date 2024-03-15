@@ -1,4 +1,4 @@
-import { Wallet } from "@/types/Wallet";
+import { Wallet } from "../types/Wallet";
 import { AnchorProvider } from "@project-serum/anchor";
 import { Connection } from "@solana/web3.js";
 import { create } from "zustand";

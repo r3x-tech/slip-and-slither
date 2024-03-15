@@ -1,8 +1,8 @@
 import { Solana } from "@raindrop-studios/events-client";
 import { AnchorProvider } from "@project-serum/anchor";
 import { Connection } from "@solana/web3.js";
-import { supabase } from "@/supabaseClient";
-import { Wallet } from "@/types/Wallet";
+import { supabase } from "../services/supabaseClient";
+import { Wallet } from "../types/Wallet";
 
 export async function createTournament(
   tournamentName: string,
