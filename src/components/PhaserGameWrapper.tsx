@@ -7,7 +7,8 @@ import { useLoginModalStore } from "../stores/useLoginModalStore";
 import userStore from "../stores/userStore";
 import { useScoreSavedModalStore } from "../stores/useScoreSavedModalStore";
 import toast from "react-hot-toast";
-import SimplePhaserGameComponent from "./SimplePhaserGameComponent";
+// import SimplePhaserGameComponent from "./SimplePhaserGameComponent";
+import PhaserGameComponent from "./PhaserGameComponent";
 
 const PhaserGameWrapper: React.FC = () => {
   const { showGameOverModal, setShowGameOverModal } = useGameOverModalStore();
@@ -75,14 +76,14 @@ const PhaserGameWrapper: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-[360px] h-full w-full pt-2 font-montserrat">
+    <div className="flex flex-col justify-center items-center h-[360px] pt-2 font-montserrat">
       {showGameOverModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center"
+          className="fixed inset-0 z-50 flex items-start justify-center"
           onClick={stopPropagation}
         >
           <div
-            className="bg-black border-2 border-white rounded-none mt-48 py-2.5 w-[362px] h-[362px]"
+            className="bg-black border-2 border-white rounded-none mt-14 p-4 w-[362px] h-[362px]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex flex-col items-center justify-center h-full">
@@ -94,7 +95,7 @@ const PhaserGameWrapper: React.FC = () => {
               ) : (
                 <>
                   <button
-                    className="bg-[#665EFF] text-white w-full border-2 border-[#665EFF] h-[6vh] rounded-none font-extrabold disabled:opacity-50 hover:bg-[#817df2] hover:border-[#817df2]"
+                    className="bg-[#665EFF] mb-6 text-white w-full border-2 border-[#665EFF] h-[6vh] rounded-none font-extrabold disabled:opacity-50 hover:bg-[#817df2] hover:border-[#817df2]"
                     disabled
                     onClick={() => setShowGameOverModal(false)}
                   >
@@ -122,7 +123,7 @@ const PhaserGameWrapper: React.FC = () => {
           </div>
         </div>
       )}
-      <SimplePhaserGameComponent />
+      <PhaserGameComponent />
     </div>
   );
 };
