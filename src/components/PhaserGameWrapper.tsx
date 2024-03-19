@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useGameOverModalStore } from "../stores/useGameOverModalStore";
 import { saveHighScore } from "../services/supabase";
 import { useScoreStore } from "../stores/useScoreStore";

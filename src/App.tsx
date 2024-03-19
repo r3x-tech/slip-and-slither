@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import PhaserGameWrapper from "./components/PhaserGameWrapper";
 
 function App() {
   const [authStatus, setAuthStatus] = useState("unauthenticated");
@@ -16,7 +17,7 @@ function App() {
   return (
     <div className="bg-background min-h-screen flex flex-col justify-between">
       <Header onConnect={handleConnect} authStatus={authStatus} />
-      {/* Your content here */}
+      <PhaserGameWrapper />
       <Footer />
     </div>
   );
