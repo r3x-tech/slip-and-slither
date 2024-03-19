@@ -1,5 +1,5 @@
 import userStore from "../stores/userStore";
-import { supabase } from "../services/supabaseClient";
+import { supabase } from "../supabaseClient";
 
 export const getPlayersByWalletAddress = async (
   solana_wallet_address: string

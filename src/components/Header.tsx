@@ -56,11 +56,7 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
 
     if (!loggedIn) {
       try {
-        console.log("here:");
-
         let userInfo = await particleConnect();
-
-        console.log("there");
 
         if (!userInfo && userInfo !== undefined) {
           throw Error("User unavailable");
@@ -119,88 +115,90 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
             LOGIN
           </button>
         </div>
-        <div className="flex-1 flex justify-start">
-          <div className="relative inline-block text-left">
-            <div>
-              <span
-                className="cursor-pointer"
-                onClick={() => setShowTournaments(!showTournaments)}
-              >
-                <IoMdTrophy size="1.75rem" color="white" />
-              </span>
-            </div>
-            {showTournaments && (
-              <div
-                className="origin-top-right absolute right-0 mt-2 w-[365px] rounded-none shadow-lg bg-black border-2 border-white"
-                style={{ zIndex: 100 }}
-              >
-                <div className="py-3 px-5 relative">
-                  <button
-                    className="absolute top-1 right-1 text-xs font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
-                    onClick={() => setShowTournaments(false)}
-                  >
-                    X
-                  </button>
-                  <Tournaments />
-                </div>
+        <div className="flex-1 flex justify-between items-center">
+          <div className="flex-1 flex justify-start">
+            <div className="relative inline-block text-left">
+              <div>
+                <span
+                  className="cursor-pointer"
+                  onClick={() => setShowLeaderboard(!showLeaderboard)}
+                >
+                  <MdLeaderboard size="1.75rem" color="white" />
+                </span>
               </div>
-            )}
+              {showLeaderboard && (
+                <div
+                  className="origin-top-right absolute right-0 mt-2 w-[365px] rounded-none shadow-lg bg-black border-2 border-white"
+                  style={{ zIndex: 100 }}
+                >
+                  <div className="py-3 px-5 relative">
+                    <button
+                      className="absolute top-1 right-1 text-xs font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
+                      onClick={() => setShowLeaderboard(false)}
+                    >
+                      X
+                    </button>
+                    <Leaderboard />
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="flex-1 flex justify-center">
-          <div className="relative inline-block text-left">
-            <div>
-              <span
-                className="cursor-pointer"
-                onClick={() => setShowLeaderboard(!showLeaderboard)}
-              >
-                <MdLeaderboard size="1.75rem" color="white" />
-              </span>
-            </div>
-            {showLeaderboard && (
-              <div
-                className="origin-top-right absolute right-0 mt-2 w-[365px] rounded-none shadow-lg bg-black border-2 border-white"
-                style={{ zIndex: 100 }}
-              >
-                <div className="py-3 px-5 relative">
-                  <button
-                    className="absolute top-1 right-1 text-xs font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
-                    onClick={() => setShowLeaderboard(false)}
-                  >
-                    X
-                  </button>
-                  <Leaderboard />
-                </div>
+          <div className="flex-1 flex justify-center">
+            <div className="relative inline-block text-left">
+              <div>
+                <span
+                  className="cursor-pointer"
+                  onClick={() => setShowCustomize(!showCustomize)}
+                >
+                  <TbMoodEdit size="1.75rem" color="white" />
+                </span>
               </div>
-            )}
+              {showCustomize && (
+                <div
+                  className="origin-top-right absolute right-0 mt-2 w-[365px] rounded-none shadow-lg bg-black border-2 border-white"
+                  style={{ zIndex: 100 }}
+                >
+                  <div className="py-3 px-5 relative">
+                    <button
+                      className="absolute top-1 right-1 text-xs font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
+                      onClick={() => setShowCustomize(false)}
+                    >
+                      X
+                    </button>
+                    <Customize />
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="flex-1 flex justify-end">
-          <div className="relative inline-block text-left">
-            <div>
-              <span
-                className="cursor-pointer"
-                onClick={() => setShowCustomize(!showCustomize)}
-              >
-                <TbMoodEdit size="1.75rem" color="white" />
-              </span>
-            </div>
-            {showCustomize && (
-              <div
-                className="origin-top-right absolute right-0 mt-2 w-[365px] rounded-none shadow-lg bg-black border-2 border-white"
-                style={{ zIndex: 100 }}
-              >
-                <div className="py-3 px-5 relative">
-                  <button
-                    className="absolute top-1 right-1 text-xs font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
-                    onClick={() => setShowCustomize(false)}
-                  >
-                    X
-                  </button>
-                  <Customize />
-                </div>
+          <div className="flex-1 flex justify-end">
+            <div className="relative inline-block text-left">
+              <div>
+                <span
+                  className="cursor-pointer"
+                  onClick={() => setShowTournaments(!showTournaments)}
+                >
+                  <IoMdTrophy size="1.75rem" color="white" />
+                </span>
               </div>
-            )}
+              {showTournaments && (
+                <div
+                  className="origin-top-right absolute right-0 mt-2 w-[365px] rounded-none shadow-lg bg-black border-2 border-white"
+                  style={{ zIndex: 100 }}
+                >
+                  <div className="py-3 px-5 relative">
+                    <button
+                      className="absolute top-1 right-1 text-xs font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
+                      onClick={() => setShowTournaments(false)}
+                    >
+                      X
+                    </button>
+                    <Tournaments />
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

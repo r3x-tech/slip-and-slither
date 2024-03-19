@@ -3,9 +3,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PhaserGameWrapper from "./components/PhaserGameWrapper";
 
-console.log("Supabase URL:", process.env.REACT_APP_SUPABASE_URL);
-console.log("Supabase Anon Key:", process.env.REACT_APP_SUPABASE_ANON_KEY);
-
 function App() {
   const [authStatus, setAuthStatus] = useState("unauthenticated");
 

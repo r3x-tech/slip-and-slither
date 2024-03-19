@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Tournament, getTournamentsByGameName } from "../services/tournament";
+// import { Tournament, getTournamentsByGameName } from "../services/tournament";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 
 dayjs.extend(duration);
 
 export function Tournaments() {
-  const [tournaments, setTournaments] = useState<Tournament[]>([]);
+  // const [tournaments, setTournaments] = useState<Tournament[]>([]);
 
-  useEffect(() => {
-    getTournamentsByGameName("Meteor Crash").then((data: Tournament[]) => {
-      setTournaments(data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getTournamentsByGameName("Meteor Crash").then((data: Tournament[]) => {
+  //     setTournaments(data);
+  //   });
+  // }, []);
 
   const formatNumber = (num: number) => {
     return num.toString().padStart(2, "0");
@@ -50,7 +50,10 @@ export function Tournaments() {
       <h2 className="text-white text-2xl font-bold text-left">TOURNAMENTS</h2>
 
       <div className="mt-2 w-full space-y-3">
-        {tournaments.length > 0 ? (
+        <p className="text-white text-left my-10 text-sm">
+          NO ACTIVE TOURNAMENTS
+        </p>
+        {/* {tournaments.length > 0 ? (
           tournaments.map((tournament: Tournament, index: number) => {
             const { time, status } = timeRemaining(
               tournament.start_datetime,
@@ -75,7 +78,7 @@ export function Tournaments() {
           <p className="text-white text-left my-10 text-sm">
             NO ACTIVE TOURNAMENTS
           </p>
-        )}
+        )} */}
       </div>
     </>
   );
