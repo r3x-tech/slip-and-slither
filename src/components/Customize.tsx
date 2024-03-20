@@ -78,7 +78,7 @@ export function Customize() {
   };
 
   return (
-    <div className="text-white text-lg font-bold text-left">
+    <div className="text-white font-bold text-left">
       <h1 className="text-white text-xl font-bold font-body w-full h-full text-left tracking-wide">
         CUSTOMIZE GAME
       </h1>

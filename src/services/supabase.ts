@@ -101,7 +101,7 @@ export interface Score {
   walletAddress: string;
 }
 
-export const getLeaderboard = async (): Promise<Score[]> => {
+export const getGlobalLeaderboard = async (): Promise<Score[]> => {
   // Get all players, their scores and wallet addresses
   const { data, error } = await supabase
     .from("reload_slipandslither_players")
