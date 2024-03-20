@@ -79,8 +79,11 @@ export function Customize() {
 
   return (
     <div className="text-white text-lg font-bold text-left">
-      CUSTOMIZE GAME
-      <div className="mt-2 flex flex-col justify-center items-center space-y-6 overflow-y-auto">
+      <h1 className="text-white text-xl font-bold font-body w-full h-full text-left tracking-wide">
+        CUSTOMIZE GAME
+      </h1>
+
+      <div className="mt-5 flex flex-col justify-center items-center space-y-6 overflow-y-auto">
         {isProcessing ? (
           <div className="flex flex-col items-center justify-center space-y-3">
             <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>

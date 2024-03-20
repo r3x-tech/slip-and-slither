@@ -10,7 +10,7 @@ export function Leaderboard() {
 
   return (
     <>
-      <h1 className="text-white text-xl font-bold w-full h-full text-left">
+      <h1 className="text-white text-xl font-bold font-body w-full h-full text-left tracking-wide">
         LEADERBOARDS
       </h1>
       <div className="border-b border-gray-200">

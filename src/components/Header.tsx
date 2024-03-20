@@ -109,7 +109,7 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
         <div className="flex-1 flex justify-start">
           <button
             onClick={() => handlePhoneLogin()}
-            className="px-4 py-2 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-colors duration-150 ease-in-out font-montserrat text-xs tracking-widest"
+            className="px-4 py-2 border-2 border-white text-white font-bold font-body hover:bg-white hover:text-black transition-colors duration-150 ease-in-out font-montserrat text-xs tracking-widest"
             style={{ fontWeight: 700 }}
           >
             LOGIN
@@ -143,10 +143,10 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
                 >
                   <div className="py-5 px-5 relative">
                     <button
-                      className="absolute top-5 right-5 text-xl font-semibold text-primary"
+                      className="absolute top-5 right-5 font-semibold text-primary"
                       onClick={() => setShowLeaderboard(false)}
                     >
-                      <MdClose color="white" size="1.25em" />{" "}
+                      <MdClose color="white" size="1.5em" />{" "}
                     </button>
                     <Leaderboard />
                   </div>
@@ -181,14 +181,14 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
                 >
                   <div className="py-5 px-5 relative">
                     <button
-                      className="absolute top-5 right-5 text-xl font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
+                      className="absolute top-5 right-5 font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
                       onClick={() => {
                         setShowTournaments(!showTournaments);
                         setShowLeaderboard(false);
                         setShowCustomize(false);
                       }}
                     >
-                      <MdClose color="white" size="1.25em" />{" "}
+                      <MdClose color="white" size="1.5em" />{" "}
                     </button>
 
                     <Customize />
@@ -222,9 +222,9 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
                     height: "365px",
                   }}
                 >
-                  <div className="py-3 px-5 relative">
+                  <div className="py-5 px-5 relative">
                     <button
-                      className="absolute top-5 right-5 text-xl font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
+                      className="absolute top-5 right-5 font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
                       onClick={() => setShowTournaments(false)}
                     >
                       <MdClose color="white" size="1.5em" />

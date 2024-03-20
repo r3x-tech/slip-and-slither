@@ -47,8 +47,10 @@ export function Tournaments() {
 
   return (
     <>
-      <h2 className="text-white text-2xl font-bold text-left">TOURNAMENTS</h2>
-
+      {" "}
+      <h1 className="text-white text-xl font-bold font-body w-full h-full text-left tracking-wide">
+        TOURNAMENTS
+      </h1>
       <div className="mt-2 w-full space-y-3">
         <p className="text-white text-left my-10 text-sm">
           NO ACTIVE TOURNAMENTS
