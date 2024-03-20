@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MdLeaderboard } from "react-icons/md";
+import { MdLeaderboard, MdClose } from "react-icons/md";
 import { TbMoodEdit } from "react-icons/tb";
 import { Leaderboard } from "./Leaderboard";
 import { Customize } from "./Customize";
@@ -121,22 +121,32 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
               <div>
                 <span
                   className="cursor-pointer"
-                  onClick={() => setShowLeaderboard(!showLeaderboard)}
+                  onClick={() => {
+                    setShowLeaderboard(!showLeaderboard);
+                    setShowCustomize(false);
+                    setShowTournaments(false);
+                  }}
                 >
                   <MdLeaderboard size="1.75rem" color="white" />
                 </span>
               </div>
               {showLeaderboard && (
                 <div
-                  className="origin-top-right absolute right-0 mt-2 w-[365px] rounded-none shadow-lg bg-black border-2 border-white"
-                  style={{ zIndex: 100 }}
+                  className="origin-top-right absolute mt-3.5 rounded-none shadow-lg bg-black border-2 border-white"
+                  style={{
+                    zIndex: 100,
+                    left: "54%",
+                    transform: "translateX(-54%)",
+                    width: "365px",
+                    height: "365px",
+                  }}
                 >
-                  <div className="py-3 px-5 relative">
+                  <div className="py-5 px-5 relative">
                     <button
-                      className="absolute top-1 right-1 text-xs font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
+                      className="absolute top-5 right-5 text-xl font-semibold text-primary"
                       onClick={() => setShowLeaderboard(false)}
                     >
-                      X
+                      <MdClose color="white" size="1.25em" />{" "}
                     </button>
                     <Leaderboard />
                   </div>
@@ -149,23 +159,38 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
               <div>
                 <span
                   className="cursor-pointer"
-                  onClick={() => setShowCustomize(!showCustomize)}
+                  onClick={() => {
+                    setShowCustomize(!showCustomize);
+                    setShowLeaderboard(false);
+                    setShowTournaments(false);
+                  }}
                 >
                   <TbMoodEdit size="1.75rem" color="white" />
                 </span>
               </div>
               {showCustomize && (
                 <div
-                  className="origin-top-right absolute right-0 mt-2 w-[365px] rounded-none shadow-lg bg-black border-2 border-white"
-                  style={{ zIndex: 100 }}
+                  className="origin-top-right absolute mt-3.5 rounded-none shadow-lg bg-black border-2 border-white"
+                  style={{
+                    zIndex: 100,
+                    left: "76.5%",
+                    transform: "translateX(-76.5%)",
+                    width: "365px",
+                    height: "365px",
+                  }}
                 >
-                  <div className="py-3 px-5 relative">
+                  <div className="py-5 px-5 relative">
                     <button
-                      className="absolute top-1 right-1 text-xs font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
-                      onClick={() => setShowCustomize(false)}
+                      className="absolute top-5 right-5 text-xl font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
+                      onClick={() => {
+                        setShowTournaments(!showTournaments);
+                        setShowLeaderboard(false);
+                        setShowCustomize(false);
+                      }}
                     >
-                      X
+                      <MdClose color="white" size="1.25em" />{" "}
                     </button>
+
                     <Customize />
                   </div>
                 </div>
@@ -177,23 +202,34 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
               <div>
                 <span
                   className="cursor-pointer"
-                  onClick={() => setShowTournaments(!showTournaments)}
+                  onClick={() => {
+                    setShowTournaments(!showTournaments);
+                    setShowLeaderboard(false);
+                    setShowCustomize(false);
+                  }}
                 >
                   <IoMdTrophy size="1.75rem" color="white" />
                 </span>
               </div>
               {showTournaments && (
                 <div
-                  className="origin-top-right absolute right-0 mt-2 w-[365px] rounded-none shadow-lg bg-black border-2 border-white"
-                  style={{ zIndex: 100 }}
+                  className="origin-top-right absolute mt-3.5 rounded-none shadow-lg bg-black border-2 border-white"
+                  style={{
+                    zIndex: 100,
+                    left: "99%",
+                    transform: "translateX(-99%)",
+                    width: "365px",
+                    height: "365px",
+                  }}
                 >
                   <div className="py-3 px-5 relative">
                     <button
-                      className="absolute top-1 right-1 text-xs font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
+                      className="absolute top-5 right-5 text-xl font-semibold text-gray-400 hover:text-gray-200 transition duration-150 ease-in-out"
                       onClick={() => setShowTournaments(false)}
                     >
-                      X
+                      <MdClose color="white" size="1.5em" />
                     </button>
+
                     <Tournaments />
                   </div>
                 </div>
