@@ -31,9 +31,14 @@ root.render(
         themeType: "dark",
         fiatCoin: "USD",
         language: "en",
-        promptSettingConfig: {
-          promptPaymentPasswordSettingWhenSign: PromptSettingType.first,
-          promptMasterPasswordSettingWhenLogin: PromptSettingType.first,
+        // promptSettingConfig: {
+        //   promptPaymentPasswordSettingWhenSign: PromptSettingType.first,
+        //   promptMasterPasswordSettingWhenLogin: PromptSettingType.first,
+        // },
+        customStyle: {
+          logo: "https://shdw-drive.genesysgo.net/6st6r9F5uqntVoBsH8DomaEimsfqJJXTbEEtGDXPNZex/reload_logo_white_no_back.svg",
+          projectName: "Slip & Slither",
+          subtitle: "Login with phone to continue",
         },
         wallet: {
           visible: false,
