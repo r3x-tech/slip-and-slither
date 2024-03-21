@@ -9,6 +9,7 @@ import { PublicKey } from "@solana/web3.js";
 import toast from "react-hot-toast";
 import { Tournaments } from "./Tournaments";
 import { IoMdTrophy } from "react-icons/io";
+import { useLoginModalStore } from "../stores/useLoginModalStore";
 
 interface HeaderProps {
   onConnect: () => void;
@@ -19,6 +20,7 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
   const [showLeaderboard, setShowLeaderboard] = useState<boolean>(false);
   const [showCustomize, setShowCustomize] = useState<boolean>(false);
   const [showTournaments, setShowTournaments] = useState<boolean>(false);
+  const { showLoginModal, setShowLoginModal } = useLoginModalStore();
   const [loginInProgress, setLoginInProgress] = useState<boolean>(false);
   const {
     address,
@@ -109,7 +111,7 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
         <div className="flex-1 flex justify-start">
           <button
             onClick={() => handlePhoneLogin()}
-            className="px-4 py-2 border-2 border-white text-white font-bold font-body hover:bg-white hover:text-black transition-colors duration-150 ease-in-out font-montserrat text-xs tracking-widest"
+            className="px-4 py-2 border-2 border-white text-white font-bold font-body hover:bg-white hover:text-black transition-colors duration-150 ease-in-out text-xs tracking-widest"
             style={{ fontWeight: 700 }}
           >
             LOGIN
