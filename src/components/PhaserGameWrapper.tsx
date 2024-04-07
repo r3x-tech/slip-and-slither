@@ -11,7 +11,12 @@ import toast from "react-hot-toast";
 import PhaserGameComponent from "./PhaserGameComponent";
 
 const PhaserGameWrapper: React.FC = () => {
-  const { showGameOverModal, setShowGameOverModal } = useGameOverModalStore();
+  const {
+    showGameOverModal,
+    setShowGameOverModal,
+    prizeClaimable,
+    setPrizeClaimable,
+  } = useGameOverModalStore();
   const score = useScoreStore((state: any) => state.score);
   const { showScoreSavedModal, setShowScoreSavedModal } =
     useScoreSavedModalStore();
@@ -47,6 +52,31 @@ const PhaserGameWrapper: React.FC = () => {
             useLoadingStore.getState().setLoadingStatus(false);
           });
       }
+    }
+  };
+
+  const claimPrize = async () => {
+    useLoadingStore.getState().setLoadingStatus(true);
+    console.log("loading status: ", useLoadingStore.getState().loadingStatus);
+    if (
+      userStore.getState().solana_wallet_address.trim() === "" ||
+      userStore.getState().solana_wallet_address === null
+    ) {
+      console.log(
+        "SWA in saveHighscore is: ",
+        userStore.getState().solana_wallet_address
+      );
+      setShowGameOverModal(true);
+      console.log("show modal in saveHighscore is: ", showGameOverModal);
+      useScoreStore.getState().setScore(score);
+      useLoginModalStore.getState().setShowLoginModal(true);
+      console.log(
+        "show modal login state: ",
+        useLoginModalStore.getState().showLoginModal
+      );
+    } else {
+      toast.success("Registered for OraHacks 2024 Airdrop");
+      useLoadingStore.getState().setLoadingStatus(false);
     }
   };
 
@@ -96,8 +126,8 @@ const PhaserGameWrapper: React.FC = () => {
                 <>
                   <button
                     className="bg-[#665EFF] mb-6 text-white w-full border-2 border-[#665EFF] h-[6vh] rounded-none font-extrabold disabled:opacity-50 hover:bg-[#817df2] hover:border-[#817df2]"
-                    disabled
-                    onClick={() => setShowGameOverModal(false)}
+                    disabled={prizeClaimable ? true : false}
+                    onClick={() => claimPrize()}
                   >
                     CLAIM PRIZE
                   </button>

@@ -58,6 +58,7 @@ class WinningScene extends Phaser.Scene {
           console.log("saved score");
         });
       });
+      useGameOverModalStore.getState().setShowGameOverModal(true);
     } else {
       useGameOverModalStore.getState().setShowGameOverModal(true);
     }

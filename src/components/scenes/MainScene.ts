@@ -86,6 +86,7 @@ export default class MainScene extends Phaser.Scene {
     this.createSnake();
     this.createApple();
     this.createBomb();
+
     this.createOra();
     this.scoreText = this.add.text(16, 16, "SCORE: 0", {
       fontSize: "16px",
@@ -159,11 +160,11 @@ export default class MainScene extends Phaser.Scene {
       callbackScope: this,
       loop: true,
     });
-    // this.physics.world.createDebugGraphic();
+    this.physics.world.createDebugGraphic();
 
-    // // Optionally, for more detailed debug graphics, you can adjust the debug body settings:
-    // this.physics.world.drawDebug = true;
-    // this.physics.world.debugGraphic.clear(); // Clear previous frames
+    // Optionally, for more detailed debug graphics, you can adjust the debug body settings:
+    this.physics.world.drawDebug = true;
+    this.physics.world.debugGraphic.clear(); // Clear previous frames
   }
 
   private handleKeyboardControls() {
@@ -204,9 +205,25 @@ export default class MainScene extends Phaser.Scene {
     this.ora = this.physics.add
       .sprite(newOraPosition.x, newOraPosition.y, "ora")
       .setOrigin(0);
-    this.ora.setDisplaySize(20, 20);
+    this.ora.setDisplaySize(40, 40);
     if (this.ora.body) {
       this.ora.body.setSize(350, 350);
+    }
+  }
+
+  private scheduleNextOra() {
+    // Only schedule if score is 5 or more and ora isn't currently scheduled or displayed
+    if (this.score >= 5 && (!this.ora || !this.ora.active)) {
+      const minDelay = 20000; // Minimum delay in milliseconds (e.g., 20 seconds)
+      const maxDelay = 60000; // Maximum delay in milliseconds (e.g., 60 seconds)
+      const delay = Phaser.Math.Between(minDelay, maxDelay); // Random delay
+
+      this.time.delayedCall(delay, () => {
+        if (!this.gameOver && this.score >= 5) {
+          // Additional check to ensure conditions are still met
+          this.createOra();
+        }
+      });
     }
   }
 
@@ -217,7 +234,10 @@ export default class MainScene extends Phaser.Scene {
     this.oraEaten = true;
     ora.destroy();
     // Trigger the winning condition
-    this.scene.start("WinningScreen", { score: this.score });
+    this.scene.start("WinningScreen", {
+      score: this.score,
+      ora: this.oraEaten,
+    });
   }
 
   togglePause() {
