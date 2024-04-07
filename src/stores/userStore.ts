@@ -1,7 +1,9 @@
 import { Wallet } from "../types/Wallet";
+import { UserInfo } from "@particle-network/auth-core";
 import { AnchorProvider } from "@project-serum/anchor";
 import { Connection } from "@solana/web3.js";
 import { create } from "zustand";
+import { ShdwDrive } from "@shadow-drive/sdk";
 
 type Store = {
   loggedIn: boolean;
@@ -13,6 +15,8 @@ type Store = {
   signAllTransactions: any | null;
   currentProvider: AnchorProvider | null;
   currentWallet: Wallet | null;
+  currentUserInfo: UserInfo | null;
+  shadowDriveConnection: ShdwDrive | null;
   ip_address: string;
   userProfilePic: string;
   setLogin: (
@@ -25,6 +29,8 @@ type Store = {
     signAllTransactions: any | null,
     currentProvider: AnchorProvider | null,
     currentWallet: Wallet | null,
+    currentUserInfo: UserInfo | null,
+    shadowDriveConnection: ShdwDrive | null,
     ip_address: string
   ) => void;
 };
@@ -39,6 +45,8 @@ export const userStore = create<Store>((set) => ({
   signAllTransactions: null,
   currentProvider: null,
   currentWallet: null,
+  currentUserInfo: null,
+  shadowDriveConnection: null,
   ip_address: "",
   userProfilePic:
     "https://shdw-drive.genesysgo.net/5jHWA7UVajMawLH2wVCZdp3U4u42XsF8rSa1DcEQui72/profilePicWhite.svg",
@@ -52,6 +60,8 @@ export const userStore = create<Store>((set) => ({
     signAllTransactions,
     currentProvider,
     currentWallet,
+    currentUserInfo,
+    shadowDriveConnection,
     ip_address
   ) =>
     set({
@@ -64,6 +74,8 @@ export const userStore = create<Store>((set) => ({
       signAllTransactions: signAllTransactions,
       currentProvider: currentProvider,
       currentWallet: currentWallet,
+      currentUserInfo: currentUserInfo,
+      shadowDriveConnection: shadowDriveConnection,
       ip_address: ip_address,
     }),
 }));

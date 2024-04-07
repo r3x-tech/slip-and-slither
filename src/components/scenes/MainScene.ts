@@ -53,6 +53,7 @@ export default class MainScene extends Phaser.Scene {
     this.score = 0;
     this.gameOver = false;
     this.paused = false;
+    this.oraEaten = false;
   }
 
   preload() {
@@ -86,8 +87,8 @@ export default class MainScene extends Phaser.Scene {
     this.createSnake();
     this.createApple();
     this.createBomb();
-
     this.createOra();
+
     this.scoreText = this.add.text(16, 16, "SCORE: 0", {
       fontSize: "16px",
       color: "#fff",
@@ -116,18 +117,18 @@ export default class MainScene extends Phaser.Scene {
       }
     );
 
-    this.physics.add.collider(
-      this.snake.getChildren()[0],
-      this.bomb,
-      (player, bomb) => {
-        if (
-          player instanceof Phaser.Physics.Arcade.Sprite &&
-          bomb instanceof Phaser.Physics.Arcade.Sprite
-        ) {
-          this.hitBomb(player, bomb);
-        }
-      }
-    );
+    // this.physics.add.collider(
+    //   this.snake.getChildren()[0],
+    //   this.bomb,
+    //   (player, bomb) => {
+    //     if (
+    //       player instanceof Phaser.Physics.Arcade.Sprite &&
+    //       bomb instanceof Phaser.Physics.Arcade.Sprite
+    //     ) {
+    //       this.hitBomb(player, bomb);
+    //     }
+    //   }
+    // );
 
     this.physics.add.collider(
       this.snake.getChildren()[0],
@@ -205,9 +206,10 @@ export default class MainScene extends Phaser.Scene {
     this.ora = this.physics.add
       .sprite(newOraPosition.x, newOraPosition.y, "ora")
       .setOrigin(0);
-    this.ora.setDisplaySize(40, 40);
+    // Set a very large size for the ora to make it easily visible
+    this.ora.setDisplaySize(20, 20); // Significantly larger than before
     if (this.ora.body) {
-      this.ora.body.setSize(350, 350);
+      this.ora.body.setSize(200, 200);
     }
   }
 
@@ -233,8 +235,13 @@ export default class MainScene extends Phaser.Scene {
   ) {
     this.oraEaten = true;
     ora.destroy();
+    this.gameOver = true;
+    this.physics.pause();
+    this.snake
+      .getChildren()
+      .forEach((part) => (part as Phaser.GameObjects.Sprite).setVisible(false));
     // Trigger the winning condition
-    this.scene.start("WinningScreen", {
+    this.scene.start("WinningScene", {
       score: this.score,
       ora: this.oraEaten,
     });

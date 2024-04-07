@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 
-export default class MainScene extends Phaser.Scene {
+export default class MainSceneNew extends Phaser.Scene {
   private appleImage: string;
   private bombImage: string;
   // private snakeBodyImage: string;
@@ -21,7 +21,7 @@ export default class MainScene extends Phaser.Scene {
   private appleEaten: boolean = false;
 
   constructor(appleImage: string, bombImage: string, snakeBodyImage: string) {
-    super("MainScene");
+    super("MainSceneNew");
     this.appleImage = appleImage;
     this.bombImage = bombImage;
     // this.snakeBodyImage = snakeBodyImage;

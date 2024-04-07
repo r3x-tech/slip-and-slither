@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import Phaser from "phaser";
-import MainScene from "./scenes/MainScene new";
+import MainScene from "./scenes/MainScene";
 import WebFont from "webfontloader";
 import GameOverScene from "./scenes/GameOverScene";
 import StartScene from "./scenes/StartScene";
 import { useGameSettingsStore } from "../stores/useGameSettingsStore";
 import { useGameOverModalStore } from "../stores/useGameOverModalStore";
+import WinningScene from "./scenes/WinningScene";
 
 const PhaserGameComponent: React.FC = () => {
   const gameRef = useRef<Phaser.Game | null>(null);
@@ -54,6 +55,7 @@ const PhaserGameComponent: React.FC = () => {
               currentSnakeBodyImage
             ),
             GameOverScene,
+            WinningScene,
           ],
         };
 
