@@ -7,7 +7,6 @@ export default class MainScene extends Phaser.Scene {
   private snake!: Phaser.GameObjects.Group;
   private apple!: Phaser.Physics.Arcade.Sprite;
   private bomb!: Phaser.Physics.Arcade.Sprite;
-  private ora!: Phaser.Physics.Arcade.Sprite;
   private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
   private score: number = 0;
   private scoreText!: Phaser.GameObjects.Text;
@@ -20,7 +19,6 @@ export default class MainScene extends Phaser.Scene {
   private isMobile!: boolean;
   private snakeMoveEvent!: Phaser.Time.TimerEvent;
   private appleEaten: boolean = false;
-  private oraEaten: boolean = false;
 
   constructor(appleImage: string, bombImage: string, snakeBodyImage: string) {
     super("MainScene");
@@ -33,20 +31,20 @@ export default class MainScene extends Phaser.Scene {
     this.score = 0;
   }
 
-  // private calculateSwipeDirection() {
-  //   const dx = this.touchEnd.x - this.touchStart.x;
-  //   const dy = this.touchEnd.y - this.touchStart.y;
-  //   const absDx = Math.abs(dx);
-  //   const absDy = Math.abs(dy);
+  private calculateSwipeDirection() {
+    const dx = this.touchEnd.x - this.touchStart.x;
+    const dy = this.touchEnd.y - this.touchStart.y;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
 
-  //   if (absDx > absDy) {
-  //     this.direction.x = dx > 0 ? 1 : -1;
-  //     this.direction.y = 0;
-  //   } else {
-  //     this.direction.x = 0;
-  //     this.direction.y = dy > 0 ? 1 : -1;
-  //   }
-  // }
+    if (absDx > absDy) {
+      this.direction.x = dx > 0 ? 1 : -1;
+      this.direction.y = 0;
+    } else {
+      this.direction.x = 0;
+      this.direction.y = dy > 0 ? 1 : -1;
+    }
+  }
 
   resetValues() {
     this.snake = this.add.group();
@@ -62,7 +60,6 @@ export default class MainScene extends Phaser.Scene {
     // this.load.image("apple", "../assets/apple.png");
     // this.load.image("bomb", "../assets/bomb.png");
     this.load.image("body", "../assets/snakebody.png");
-    this.load.image("ora", "../assets/oralogo.png");
     this.load.image("pause", "../assets/pause.svg");
     this.load.image("play", "../assets/play.svg");
   }
@@ -74,19 +71,18 @@ export default class MainScene extends Phaser.Scene {
 
     this.cursors = this.input.keyboard!.createCursorKeys();
 
-    // this.input.on("pointerdown", (pointer: Phaser.Input.Pointer) => {
-    //   this.touchStart.set(pointer.x, pointer.y);
-    // });
+    this.input.on("pointerdown", (pointer: Phaser.Input.Pointer) => {
+      this.touchStart.set(pointer.x, pointer.y);
+    });
 
-    // this.input.on("pointerup", (pointer: Phaser.Input.Pointer) => {
-    //   this.touchEnd.set(pointer.x, pointer.y);
-    //   this.calculateSwipeDirection();
-    // });
+    this.input.on("pointerup", (pointer: Phaser.Input.Pointer) => {
+      this.touchEnd.set(pointer.x, pointer.y);
+      this.calculateSwipeDirection();
+    });
 
     this.createSnake();
     this.createApple();
     this.createBomb();
-    this.createOra();
     this.scoreText = this.add.text(16, 16, "SCORE: 0", {
       fontSize: "16px",
       color: "#fff",
@@ -124,19 +120,6 @@ export default class MainScene extends Phaser.Scene {
           bomb instanceof Phaser.Physics.Arcade.Sprite
         ) {
           this.hitBomb(player, bomb);
-        }
-      }
-    );
-
-    this.physics.add.collider(
-      this.snake.getChildren()[0],
-      this.ora,
-      (player, ora) => {
-        if (
-          player instanceof Phaser.Physics.Arcade.Sprite &&
-          ora instanceof Phaser.Physics.Arcade.Sprite
-        ) {
-          this.eatOra(player, ora);
         }
       }
     );
@@ -185,39 +168,6 @@ export default class MainScene extends Phaser.Scene {
   update() {
     if (this.paused || this.gameOver) return;
     this.handleKeyboardControls();
-  }
-
-  createOra() {
-    let newOraPosition: Phaser.Math.Vector2;
-    do {
-      const oraX = Phaser.Math.Between(
-        20,
-        Number(this.sys.game.config.width) - 20
-      );
-      const oraY = Phaser.Math.Between(
-        60,
-        Number(this.sys.game.config.height) - 20
-      );
-      newOraPosition = new Phaser.Math.Vector2(oraX, oraY);
-    } while (this.isPositionInvalid(newOraPosition));
-
-    this.ora = this.physics.add
-      .sprite(newOraPosition.x, newOraPosition.y, "ora")
-      .setOrigin(0);
-    this.ora.setDisplaySize(20, 20);
-    if (this.ora.body) {
-      this.ora.body.setSize(350, 350);
-    }
-  }
-
-  eatOra(
-    player: Phaser.Physics.Arcade.Sprite,
-    ora: Phaser.Physics.Arcade.Sprite
-  ) {
-    this.oraEaten = true;
-    ora.destroy();
-    // Trigger the winning condition
-    this.scene.start("WinningScreen", { score: this.score });
   }
 
   togglePause() {
@@ -435,51 +385,6 @@ export default class MainScene extends Phaser.Scene {
     // Set the physics body size to match the display size or whatever size gives correct physics behavior
     newSegment.body.setSize(400, 400); // Adjust if necessary based on actual behavior
     this.snake.add(newSegment);
-  }
-
-  private isPositionInvalid(newPosition: Phaser.Math.Vector2): boolean {
-    // Check if the new position collides with any part of the snake
-    const positionOnSnake = this.snake.getChildren().some((segment) => {
-      const seg = segment as Phaser.Physics.Arcade.Sprite;
-      return newPosition.x === seg.x && newPosition.y === seg.y;
-    });
-
-    // Check if the new position is too close to the apple
-    const positionOnApple =
-      this.apple &&
-      Phaser.Math.Distance.Between(
-        newPosition.x,
-        newPosition.y,
-        this.apple.x,
-        this.apple.y
-      ) < 20;
-
-    // Check if the new position is too close to the bomb
-    const positionOnBomb =
-      this.bomb &&
-      Phaser.Math.Distance.Between(
-        newPosition.x,
-        newPosition.y,
-        this.bomb.x,
-        this.bomb.y
-      ) < 20;
-
-    // Check if the new position is too close to the ora, if ora exists
-    let positionOnOra = false;
-    if (this.ora) {
-      positionOnOra =
-        Phaser.Math.Distance.Between(
-          newPosition.x,
-          newPosition.y,
-          this.ora.x,
-          this.ora.y
-        ) < 20;
-    }
-
-    // If the new position is on the snake, apple, bomb, or ora, it is invalid
-    return (
-      positionOnSnake || positionOnApple || positionOnBomb || positionOnOra
-    );
   }
 
   endGame() {

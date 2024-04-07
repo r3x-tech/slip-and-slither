@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Phaser from "phaser";
-import MainScene from "./scenes/MainScene";
+import MainScene from "./scenes/MainScene new";
 import WebFont from "webfontloader";
 import GameOverScene from "./scenes/GameOverScene";
 import StartScene from "./scenes/StartScene";

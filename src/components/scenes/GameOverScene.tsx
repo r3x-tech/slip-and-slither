@@ -2,7 +2,7 @@ import { useScoreStore } from "../../stores/useScoreStore";
 import { saveHighScore } from "../../services/supabase";
 import { useGameOverModalStore } from "../../stores/useGameOverModalStore";
 import { useLoadingStore } from "../../stores/useLoadingStore";
-import MainScene from "./MainScene";
+import MainScene from "./MainScene new";
 import userStore from "../../stores/userStore";
 
 class GameOverScene extends Phaser.Scene {
