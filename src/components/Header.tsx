@@ -117,8 +117,8 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
             LOGIN
           </button>
         </div>
-        <div className="flex-1 flex justify-between items-center">
-          <div className="flex-1 flex justify-start">
+        <div className="flex-1 flex justify-between items-end">
+          <div className="flex-1 flex justify-end">
             <div className="relative inline-block text-left">
               <div>
                 <span
@@ -156,7 +156,7 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
               )}
             </div>
           </div>
-          <div className="flex-1 flex justify-center">
+          {/* <div className="flex-1 flex justify-center">
             <div className="relative inline-block text-left">
               <div>
                 <span
@@ -237,7 +237,7 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </header>

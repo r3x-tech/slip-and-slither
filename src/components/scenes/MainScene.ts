@@ -31,20 +31,20 @@ export default class MainScene extends Phaser.Scene {
     this.score = 0;
   }
 
-  // private calculateSwipeDirection() {
-  //   const dx = this.touchEnd.x - this.touchStart.x;
-  //   const dy = this.touchEnd.y - this.touchStart.y;
-  //   const absDx = Math.abs(dx);
-  //   const absDy = Math.abs(dy);
+  private calculateSwipeDirection() {
+    const dx = this.touchEnd.x - this.touchStart.x;
+    const dy = this.touchEnd.y - this.touchStart.y;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
 
-  //   if (absDx > absDy) {
-  //     this.direction.x = dx > 0 ? 1 : -1;
-  //     this.direction.y = 0;
-  //   } else {
-  //     this.direction.x = 0;
-  //     this.direction.y = dy > 0 ? 1 : -1;
-  //   }
-  // }
+    if (absDx > absDy) {
+      this.direction.x = dx > 0 ? 1 : -1;
+      this.direction.y = 0;
+    } else {
+      this.direction.x = 0;
+      this.direction.y = dy > 0 ? 1 : -1;
+    }
+  }
 
   resetValues() {
     this.snake = this.add.group();
@@ -71,14 +71,14 @@ export default class MainScene extends Phaser.Scene {
 
     this.cursors = this.input.keyboard!.createCursorKeys();
 
-    // this.input.on("pointerdown", (pointer: Phaser.Input.Pointer) => {
-    //   this.touchStart.set(pointer.x, pointer.y);
-    // });
+    this.input.on("pointerdown", (pointer: Phaser.Input.Pointer) => {
+      this.touchStart.set(pointer.x, pointer.y);
+    });
 
-    // this.input.on("pointerup", (pointer: Phaser.Input.Pointer) => {
-    //   this.touchEnd.set(pointer.x, pointer.y);
-    //   this.calculateSwipeDirection();
-    // });
+    this.input.on("pointerup", (pointer: Phaser.Input.Pointer) => {
+      this.touchEnd.set(pointer.x, pointer.y);
+      this.calculateSwipeDirection();
+    });
 
     this.createSnake();
     this.createApple();
