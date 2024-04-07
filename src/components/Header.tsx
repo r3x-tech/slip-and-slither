@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { Tournaments } from "./Tournaments";
 import { IoMdTrophy } from "react-icons/io";
 import { useLoginModalStore } from "../stores/useLoginModalStore";
+import { LoginComponent } from "./LoginComponent";
 
 interface HeaderProps {
   onConnect: () => void;
@@ -109,13 +110,19 @@ const Header: React.FC<HeaderProps> = ({ onConnect, authStatus }) => {
     >
       <div className="w-full max-w-[360px] flex justify-between items-center">
         <div className="flex-1 flex justify-start">
-          <button
-            onClick={() => handlePhoneLogin()}
-            className="px-4 py-2 border-2 border-white text-white font-bold font-body hover:bg-white hover:text-black transition-colors duration-150 ease-in-out text-xs tracking-widest"
-            style={{ fontWeight: 700 }}
-          >
-            LOGIN
-          </button>
+          {loggedIn ? (
+            <>
+              <LoginComponent />
+            </>
+          ) : (
+            <button
+              onClick={() => handlePhoneLogin()}
+              className="px-4 py-2 border-2 border-white text-white font-bold font-body hover:bg-white hover:text-black transition-colors duration-150 ease-in-out text-xs tracking-widest"
+              style={{ fontWeight: 700 }}
+            >
+              LOGIN
+            </button>
+          )}
         </div>
         <div className="flex-1 flex justify-between items-end">
           <div className="flex-1 flex justify-end">
