@@ -295,136 +295,137 @@ export const LoginComponent = () => {
         </button>
 
         {showLoginModal && (
-          <div
-            className="absolute right-0 mt-2 w-96 bg-black text-white border-2 border-white rounded-none outline-none z-50 shadow-xl"
-            style={{ boxShadow: "1px 1px 20px black" }}
-          >
-            {loginInProgress ? (
-              <div className="flex flex-col items-center justify-center text-white mt-20 mb-20">
-                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
-                <p className="mt-3 text-xs font-medium">LOGGING IN</p>
-              </div>
-            ) : loggedInStatus ? (
-              <div className="flex flex-col space-y-4 p-4 items-start">
-                <div className="flex flex-col items-start w-full">
-                  <div className="flex items-center m-3">
-                    <div>
-                      <img
-                        src={userProfilePic}
-                        alt="User Profile Pic"
-                        className="w-12 h-12 mr-4 cursor-pointer"
-                        onClick={() => {}}
-                      />
-                    </div>
-                    <div
-                      className="tooltip"
-                      data-tip="Wallet Address"
-                      style={{
-                        position: "relative",
-                        display: "inline-block",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <p className="text-white">
-                        {formatWalletAddress(solana_wallet_address)}
-                      </p>
-                      <span
-                        className="tooltiptext"
+          <div className="fixed inset-[7vh] flex items-start justify-center z-50">
+            <div className="absolute inset-0 bg-black opacity-50"></div>
+            <div className="relative bg-black text-white border-2 border-white rounded-none outline-none shadow-xl w-[365px] max-w-full">
+              {loginInProgress ? (
+                <div className="flex flex-col items-center justify-center text-white py-20">
+                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
+                  <p className="mt-3 text-xs font-medium">LOGGING IN</p>
+                </div>
+              ) : loggedInStatus ? (
+                <div className="flex flex-col space-y-4 p-4 items-start">
+                  <div className="flex flex-col items-start w-full">
+                    <div className="flex items-center m-3">
+                      <div>
+                        <img
+                          src={userProfilePic}
+                          alt="User Profile Pic"
+                          className="w-12 h-12 mr-4 cursor-pointer"
+                          onClick={() => {}}
+                        />
+                      </div>
+                      <div
+                        className="tooltip"
+                        data-tip="Wallet Address"
                         style={{
-                          visibility: "hidden",
-                          backgroundColor: "black",
-                          color: "white",
-                          textAlign: "center",
-                          padding: "5px",
-                          borderRadius: "6px",
-                          position: "absolute",
-                          zIndex: 1,
-                          bottom: "125%",
-                          left: "50%",
-                          marginLeft: "-60px",
-                          opacity: 0,
-                          transition: "opacity 0.3s",
+                          position: "relative",
+                          display: "inline-block",
+                          cursor: "pointer",
                         }}
                       >
-                        Wallet Address
-                      </span>
-                    </div>
+                        <p className="text-white">
+                          {formatWalletAddress(solana_wallet_address)}
+                        </p>
+                        <span
+                          className="tooltiptext"
+                          style={{
+                            visibility: "hidden",
+                            backgroundColor: "black",
+                            color: "white",
+                            textAlign: "center",
+                            padding: "5px",
+                            borderRadius: "6px",
+                            position: "absolute",
+                            zIndex: 1,
+                            bottom: "125%",
+                            left: "50%",
+                            marginLeft: "-60px",
+                            opacity: 0,
+                            transition: "opacity 0.3s",
+                          }}
+                        >
+                          Wallet Address
+                        </span>
+                      </div>
 
-                    <div
-                      className="tooltip ml-2 hover:text-gray-300"
-                      data-tip="Copy"
-                      style={{
-                        position: "relative",
-                        display: "inline-block",
-                        cursor: "pointer",
-                      }}
-                      onClick={handleCopyClick}
-                    >
-                      <FaCopy />
-                      <span
-                        className="tooltiptext"
+                      <div
+                        className="tooltip ml-2 hover:text-gray-300"
+                        data-tip="Copy"
                         style={{
-                          visibility: "hidden",
-                          backgroundColor: "black",
-                          color: "white",
-                          textAlign: "center",
-                          padding: "5px",
-                          borderRadius: "6px",
-                          position: "absolute",
-                          zIndex: 1,
-                          bottom: "125%",
-                          left: "50%",
-                          marginLeft: "-30px",
-                          opacity: 0,
-                          transition: "opacity 0.3s",
+                          position: "relative",
+                          display: "inline-block",
+                          cursor: "pointer",
                         }}
+                        onClick={handleCopyClick}
                       >
-                        Copy
-                      </span>
+                        <FaCopy />
+                        <span
+                          className="tooltiptext"
+                          style={{
+                            visibility: "hidden",
+                            backgroundColor: "black",
+                            color: "white",
+                            textAlign: "center",
+                            padding: "5px",
+                            borderRadius: "6px",
+                            position: "absolute",
+                            zIndex: 1,
+                            bottom: "125%",
+                            left: "50%",
+                            marginLeft: "-30px",
+                            opacity: 0,
+                            transition: "opacity 0.3s",
+                          }}
+                        >
+                          Copy
+                        </span>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="flex w-full h-full justify-start items-center">
-                    <div className="flex w-52 h-9 justify-center items-center">
-                      <p className="text-base font-bold text-primary">
-                        Balance:
-                      </p>
-                      <p className="ml-2 text-base font-bold text-green-700">
-                        ${currentUsdcBalance ? currentUsdcBalance : "N/A"} USDC
-                      </p>
+                    <div className="flex w-full h-full justify-start items-center">
+                      <div className="flex w-52 h-9 justify-center items-center">
+                        <p className="text-base font-bold text-primary">
+                          Balance:
+                        </p>
+                        <p className="ml-2 text-base font-bold text-green-700">
+                          ${currentUsdcBalance ? currentUsdcBalance : "N/A"}{" "}
+                          USDC
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="w-full">
+                    <div className="w-full">
+                      <button
+                        className="text-md font-bold hover:text-gray-300 my-5 ml-5"
+                        onClick={() =>
+                          window.open(
+                            "https://www.r3x.tech/contact",
+                            "_blank",
+                            "noopener noreferrer"
+                          )
+                        }
+                      >
+                        Need Help?
+                      </button>
+                    </div>
+
                     <button
-                      className="text-sm font-bold hover:text-gray-300"
-                      onClick={() =>
-                        window.open(
-                          "https://www.r3x.tech/contact",
-                          "_blank",
-                          "noopener noreferrer"
-                        )
-                      }
+                      className="text-md font-bold text-red-700 hover:text-red-800 ml-5 mb-5"
+                      onClick={handleLogout}
                     >
-                      Need Help?
+                      Logout
                     </button>
                   </div>
-
-                  <button
-                    className="text-sm font-bold text-red-700 hover:text-red-800"
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </button>
                 </div>
-              </div>
-            ) : logoutStatus ? (
-              <div className="flex flex-col items-center justify-center text-white mt-20 mb-20">
-                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
-                <p className="mt-3 text-xs font-medium">LOGGING OUT</p>
-              </div>
-            ) : (
-              <></>
-            )}
+              ) : logoutStatus ? (
+                <div className="flex flex-col items-center justify-center text-white py-20">
+                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
+                  <p className="mt-3 text-xs font-medium">LOGGING OUT</p>
+                </div>
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
         )}
       </div>
