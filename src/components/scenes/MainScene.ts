@@ -207,7 +207,7 @@ export default class MainScene extends Phaser.Scene {
       .sprite(newOraPosition.x, newOraPosition.y, "ora")
       .setOrigin(0);
     // Set a very large size for the ora to make it easily visible
-    this.ora.setDisplaySize(20, 20); // Significantly larger than before
+    this.ora.setDisplaySize(200, 200); // Significantly larger than before
     if (this.ora.body) {
       this.ora.body.setSize(200, 200);
     }

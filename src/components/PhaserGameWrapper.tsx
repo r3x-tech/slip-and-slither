@@ -230,7 +230,7 @@ const PhaserGameWrapper: React.FC = () => {
                 </div>
               ) : (
                 <>
-                  {product && (
+                  {product ? (
                     <div className="text-white mt-2">
                       <img
                         src={product.variants.edges[0].node.image.originalSrc}
@@ -243,17 +243,23 @@ const PhaserGameWrapper: React.FC = () => {
                       {/* Display available sizes */}
                       <p>Stock Quantity: {/* Display stock quantity */}</p>
                     </div>
+                  ) : (
+                    <>
+                      <img
+                        src="https://c77256-c7.myshopify.com/cdn/shop/files/front.jpg?v=1712358719&width=1426"
+                        alt="Ora Logo"
+                        className="w-24 h-24 object-cover mx-auto"
+                      />
+                      <p className="text-white mt-2 text-xl font-bold">
+                        OraHacks T-shirt
+                      </p>
+                      <p className="text-white">Price: $0.10 USD</p>
+                      <p className="text-white mb-6">
+                        Available Sizes: S, M, L
+                      </p>
+                    </>
                   )}
-                  <img
-                    src="https://c77256-c7.myshopify.com/cdn/shop/files/front.jpg?v=1712358719&width=1426"
-                    alt="Ora Logo"
-                    className="w-24 h-24 object-cover mx-auto" // Adjust size as needed
-                  />
-                  <p className="text-white mt-2 text-xl font-bold">
-                    OraHacks T-shirt
-                  </p>
-                  <p className="text-white">Price: $0.10 USD</p>
-                  <p className="text-white mb-6">Available Sizes: S, M, L</p>
+
                   <button
                     className="bg-[#665EFF] mb-6 text-white w-full border-2 border-[#665EFF] h-[6vh] rounded-none font-extrabold disabled:opacity-50 hover:bg-[#817df2] hover:border-[#817df2]"
                     onClick={purchaseProduct}
